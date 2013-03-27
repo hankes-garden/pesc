@@ -1,0 +1,20 @@
+Quotes:
+Almost two thirds of CVD related deaths occur outside the hospital, with most victims not surviving long enough to receive medical help [2,3]
+
+Telehealth, which is defined as the delivery of health services through telecommunication equipment, is considered a way of providing health services in a manner that overcomes barriers to care such as time, cost, and distance [4]. 
+
+As healthcare costs continue to increase, resources within the health sector are being redirected from hospital based care to provide increased primary and home based care, in which telehealth plays an increasingly prominent role [6].
+ 
+More importantly, telehealth has been shown to reduce cardiac disease hospitalisation rates through early recognition and intervention for adverse cardiac events, as well as helping to manage and treat chronic cardiac conditions [3,7]. 
+
+ A clinical trial evaluating the benefits of wireless ECG monitors for consumers reported that the use of wireless technology increased and improved communication and interaction between consumer and health provider, in addition to decreasing waiting time for treatment [2].
+ 
+ The use of cardiac monitoring telehealth can allow for earlier recognition of a problem by the consumer and health professional and therefore earlier intervention for cardiac abnormalities [18].
+ 
+ ---------------------------
+[2]    Rubel P, Fayn J, Nollo G, Assanelli D, Li B, Restier L, et al. Toward personal eHealth in cardiology: Results from the EPI-MEDICS telemedicine project. Journal of Electrocardiology. 2005;38(4):100-6.
+[3]    Zugck C, Frankenstein L, Nelles M, Froehlich H, Schellberg D, Cebola R, et al. Telemedicine reduces hospitalisation rates in patients with chronic heart failure - results of the randomized HiTel trial. European Journal of Heart Failure 2008;7(Suppl 1):9.
+[4]    Artinian NT. Telehealth as a tool for enhancing care for patients with cardiovascular disease. Journal of Cardiovascular Nursing. 2007;22(1):25-31.
+[6]    Demiris G, Charness N, Krupinski E, Ben-Arieh D, Washington K, Wu J, et al. The role of human factors in telehealth. Telemedicine and e-health. 2010;16(4):446-53.
+[7]    Centre for Technology and Aging. Technologies for remote patient monitoring for older adults. Oakland, CA: Centre for Technology and Aging; 2010.
+[18]    Koehler F, Winkler S, Schieber M, Sechtem U, Stangl K, Bohm M, et al. Telemedicine interventional monitoring in heart failure (TIM-HF), a randomized, controlled intervention trial investigating the impact of telemedicine on mortality in ambulatory patients with heart failure: Study design. European Journal of Heart Failure. 2010;12(12):1354-62.
