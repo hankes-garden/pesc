@@ -545,13 +545,13 @@ The rest of this paper is organized as follows: In Section II, we present an ove
 % command of the stfloats package.
 
 \section{System overview and challenges}
-Under the scenario of our work, portable sensors are deployed to collect ECG data from users and transmit the data to our system automatically and continuously by using wireless network technologies. The ECG data then arrives in our system as a stream data. As soon as the data arrives in our system, a stream clustering algorithm is performed immediately to cluster the newly arrived data properly with respect to the existing data. The clustering result can be provided to clinicians to help in diagnosis or delivered to another system for further analysis. To achieve this, several challenges need to be conquered.
+Under the scenario of our work, portable sensors are deployed to collect ECG data from patients. In oder to provide high-quality monitoring service and real-time intervention for adverse cardiac events, the collected ECG data will be transmitted to a remote analysis server automatically and continuously by using wireless network technologies. In the perspective of analysis server, the ECG data will arrive as a stream, and thus as soon as the data arrives, a stream clustering is performed immediately to cluster the newly arrived data properly with respect to the existing data. The clustering result can be provided to clinicians to help in diagnosis or delivered to another system for further analysis. To achieve this, several challenges need to be conquered.
 
 
 \textbf{ECG-oriented metric design:}
 
 
-The primary step of cluster analysis is to define the basic processing unit. For ECG data, as it is actually a combination of electrical deflection caused by the heartbeat, it can be divided into several intervals according to the heart rate, each of which is called as QRS interval in this paper and used as the basic processing unit for our cluster analysis. Figure \ref{fig_ECG_lable} presents a standard QRS interval. As showed in Figure \ref{fig_ECG_lable}, the QRS interval actually consists of P wave, QRS complex, T wave and segments between them. Each wave has some feature points----the beginning point, the peak and the end point. The QRS interval also has some special properties: Firstly, considering the nature of ECG, some regions of the QRS interval are more important than others. Second, since each QRS interval corresponds to a heart beat, the QRS intervals could be of various lengths. Finally, as a result of the biological diversity, the morphological characteristic of QRS intervals diversifies with different people and even with same person in different situations.
+The primary step of cluster analysis is to define the basic processing unit. For ECG data, as it is actually a combination of electrical deflection caused by the heartbeat, it can be divided into several intervals according to the heart beats, each of which is called as QRS interval in this paper and used as the basic processing unit for our cluster analysis. Figure \ref{fig_ECG_lable} presents a standard QRS interval. As showed in Figure \ref{fig_ECG_lable}, the QRS interval actually consists of P wave, QRS complex, T wave and segments between them. Each wave has some characteristic points----the beginning point, the peak and the end point. The QRS interval also has some special properties: Firstly, considering the nature of ECG, some regions of the QRS interval are more important than others. Second, since each QRS interval corresponds to a heart beat, the QRS intervals could be of various lengths. Finally, as a result of the biological diversity, the morphological characteristic of QRS intervals diversifies with different people and even with same person in different situations.
 \begin{figure}[!t]
 \centering
 \includegraphics[height=3.0in]{./Figure/rr_interval_label.eps}
@@ -583,12 +583,12 @@ To improve the performance as much as possible, we carefully design our workflow
 
 
 \section{ECG-Oriented Metric}
-As mentioned in section II, the primary step of cluster analysis is to define the basic processing unit. In our system, the QRS interval is used as the basic unit of clustering. So, as soon as a batch of ECG data arrives, a conventional wavelet transformation based algorithm is applied to find the feature points. According to these feature points, the ECG data could easily be interpreted into QRS intervals.
+The primary step of cluster analysis is to define the basic processing unit. In our system, the QRS interval is used as the basic unit of clustering. So, as soon as a batch of ECG data arrives, a conventional wavelet transformation based algorithm \cite{li1995detection} is applied to find the characteristic points. According to these characteristic points, the ECG data could easily be interpreted into QRS intervals.
 
 After that, we define how to measure the dissimilarity between these basic processing units. Considering the special properties of QRS intervals, this is not easy work.
 
 
-The primary challenge deriving from the special properties of QRS interval is that they are time series data of unequal length. This makes some conventional metrics like Euclidean metrics inapplicable since they could only handle data of equal length. So, to measure the dissimilarity between QRS intervals properly, we first align these QRS intervals by adopting the Dynamic Time Warping (DTW) algorithm \cite{sakoe1978dynamic}: Given two sequences of time series data $ M $ and $ N $, with length $ m $ and $ n $ respectively, the DTW algorithm would yield an optimal warping path between the two data by using the dynamic programming approach. The warping path $  WP $ is a set of tuples which is defined below:
+The primary challenge deriving from the special properties of QRS interval is that they are time series data of unequal length. This makes some conventional metrics like Euclidean metrics inapplicable since they could only handle data of equal length. So, to measure the dissimilarity between QRS intervals properly, we first align these QRS intervals by adopting the Dynamic Time Warping (DTW) algorithm \cite{sakoe1978dynamic}, which could make two unequal-length QRS intervals align with the same length without losing the morphological characteristic: Given two sequences of time series data $ M $ and $ N $, with length $ m $ and $ n $ respectively, the DTW algorithm would yield an optimal warping path between the two data by using the dynamic programming approach. The warping path $  WP $ is a set of tuples which is defined below:
 \begin{equation}
 WP = \{ (i, j) \; | \; 0 \leq i \leq m, \; 0 \leq j \leq n  \}
 \end{equation}
@@ -598,9 +598,9 @@ where each tuple $ (i, j) $ in the warping path implies that the $ i^{th} $ elem
 Another issue raised from the special properties of QRS interval is that considering the nature of ECG, some regions of the QRS interval are more important than others. Taking this into account, we divide the QRS interval into three segments and assign each segment with a heuristic weight, that is:
 \begin{equation}\label{PT_segment}
 \left\{ \begin{array}{ll}
-s_1 = [P_o, Q_o], \; w_1 = 0.15\\
-s_2 = [Q_o, J], \;  w_2 = 0.5\\
-s_3 = [J, T_e], \; w_3 = 0.35
+s_1 = [P_o, Q_o], \; w_1\\
+s_2 = [Q_o, J], \;  w_2\\
+s_3 = [J, T_e], \; w_3
 \end{array} \right.
 \end{equation}
 where the $ P_o $ is the beginning point of P wave, $ Q_o $ is the beginning point of Q wave, $ J $ is the end point of S wave, the $ T_e $ is the end point of T wave, and the $ w_1 $, $ w_2 $ and $ w_3 $ is the heuristic weight of each segment respectively. All of these points are shown in Figure \ref{fig_ECG_lable}.
@@ -689,7 +689,7 @@ After the global splitting, the whole clustering iteration ends. The final clust
 The data we are processing is stream data with high update rate, which implies that the data volume in our system would increase exponentially as time goes by. To handle such massive data properly, we implement our system on top of the MapReduce framework. For better utilization of the power of MapReduce, we designed our system workflow carefully in order to distribute as much computation as possible. Figure \ref{fig_sys_overview} shows the workflow of our system on top of MapReduce.
 
 
-In this workflow, as the workload of feature point extraction is relatively lightweight, it has been combined into the local clustering step. It is obvious that the job of both feature point extraction and local clustering are independent of each others, so it would be easily distributed by performing the job in the MAP.
+In this workflow, as the workload of characteristic point extraction is relatively lightweight, it has been combined into the local clustering step. It is obvious that the job of both characteristic point extraction and local clustering are independent of each others, so it would be easily distributed by performing the job in the MAP.
 
 
 However, the situation becomes more complex when it comes to global merging. As it would cross check all the clusters to calculate the connectivity, global merging seems to be unable to distribute among clusters. After carefully investigating the workflow of global merging, we have found that this step could be divided into two smaller steps: generating merging plan and merging. The first step would calculate the pair-wise connectivity between clusters to generate a merging plan. Due to its serial nature, this step would only be able to run in sequence. Meanwhile, the second step conducts the actual merging according to the merging plan assigned to it and updates the cluster feature for new clusters. As it only concerns the data contains in the merging plan, this step could be performed in MAP and run in parallel 
