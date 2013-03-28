@@ -439,24 +439,24 @@ evaluation, our system not only provides good clustering results but also has an
 % You must have at least 2 lines in the paragraph with the drop letter
 % (should never be an issue)
 
-% CVD & ECG->the rise of cardiac telehealth system->basic idea
-According to the latest research from the medical society, cardiovascular disease (CVD) has become a disease of the majority. Nowadays, more than one in three people are suffering this kind of disease in the United States \cite{Roger15122011}. As an important instrument for diagnosing CVD, the electrocardiography (ECG), a transthoracic interpretation of the electrical activity of the heart over a period of time, can be utilized to extract useful information about the functional status of the heart \cite{springerlink:10.1007/978-3-642-15020-3_21}. To help clinicians better utilize the ECG data, a variety of systems have been proposed, especially in recent years, as healthcare costs continue to increase, resources within the health sector are being redirected from hospital based care to providing increased primary and home based care, which contributes to the rise of cardiac telehealth systems\cite{demiris2010role}. These cardiac telehealth systems have proven to be able to provide a high-quality, personalized, real-time and long-term ambulatory monitoring of chronic CVD patients, while overcomes barriers of time, cost, and distance. Cardiac telehealth systems often consist in outfitting patients with portable, miniaturized and wireless sensors and devices that are capable to measure and report cardiac signals to telehealth providers. Owing to the fact that some chronic CVDs have low prevalence but high risk, the new-generation cardiac telehealth systems also tend to transmit the ECG data to a remote server which performs complex real-time analysis via wireless networks to provide high-quality interaction and real-time intervention for adverse cardiac events. 
+% CVD is prevalent->ECG could help->many system have been proposed->the rise of cardiac telehealth system->the basic idea of cardiac telehealth system
+According to the latest research from the medical society, cardiovascular disease (CVD) has become a disease of the majority. Nowadays, more than one in three people are suffering this kind of disease in the United States \cite{Roger15122011}. As an important instrument for diagnosing CVD, the electrocardiography (ECG), a transthoracic interpretation of the electrical activity of the heart over a period of time, can be utilized to extract useful information about the functional status of the heart \cite{springerlink:10.1007/978-3-642-15020-3_21}. To help clinicians better utilize the ECG data, a variety of systems have been proposed, especially in recent years, as healthcare costs continue to increase, resources within the health sector are being redirected from hospital based care to providing increased primary and home based care, which drives the rise of cardiac telehealth systems\cite{demiris2010role}. These systems have proven to be able to provide a high-quality, personalized, real-time and long-term ambulatory monitoring of chronic CVD patients, while overcomes barriers of time, cost, and distance. Cardiac telehealth systems often consist in outfitting patients with portable, miniaturized and wireless sensors and devices that are capable to measure and report cardiac signals to telehealth providers. Owing to the fact that some chronic CVDs have low prevalence but high risk, the new-generation cardiac telehealth systems also tend to transmit the ECG data to a remote server which performs complex real-time analysis via wireless networks to provide high-quality interaction and real-time intervention for adverse cardiac events. 
 
 
-%Traditional ECG clustering and its shortage
-In the domain of ECG analysis, clustering is a commonly applied approach to gain an overview of data, detect outliers or pre-process before further analysis. As an important research topic, a proliferation of researches have been done in this area \cite{lagerholm2000clustering}, \cite{sufi2011clustering}, \cite{ceylan2009novel}, \cite{bortolan1991ecg}, \cite{bortolan1993diagnostic}. However, all of these works are built on a assumption that the ECG data is small enough to fit into the memory and will not be updated, But this assumption will not hold any more under the scenario of the cardiac telehealth systems.
+%Traditional ECG clustering algorithms and their drawbacks
+In the domain of ECG analysis, clustering is a commonly applied approach to gain an overview of data, detect outliers or pre-process before further analysis, \textit{i.e.} under the scenario of cardiac telehealth, clustering could help clinicians to gain an overview of the ECG data, and locate the abnormal cardiac event quickly without reviewing all the data manually. As an important research topic, a proliferation of researches have been done in this area \cite{lagerholm2000clustering}, \cite{sufi2011clustering}, \cite{ceylan2009novel}, \cite{bortolan1991ecg}, \cite{bortolan1993diagnostic}. However, all of these works are built on a assumption that the ECG data is small enough to fit into the memory and will not be updated, But this assumption will not hold under the scenario of the cardiac telehealth systems.
 
 
-%ECG-oriented metric & Stream Clustering: why & current work & drawbacks
-As mentioned before, to provide high-quality interaction and real-time intervention for adverse cardiac events, the new-generation telehealth systems are designed to provide continuous monitoring services in a real-time manner. As a result, the ECG data will be transmitted to remote server continuously with a high update rate, which makes the ECG clustering in remote server a stream clustering problem. As an important topic in data mining, plenty of literature has been proposed in stream clustering: BIRCH \cite{Zhang:1996:BED:235968.233324}, which uses the Cluster Feature as a compact representation of cluster, is regarded as one of the most primitive works in this area. M. Ester \textit{et al.} \cite{Ester:1998:ICM:645924.671201} address this problem by designing an incremental clustering algorithm based on DBSCAN algorithm. D. Pham \textit{et al.} \cite{pham2004incremental} combines the idea of ''cluster jumping'' with K-Means to cluster data incrementally. CluStream \cite{aggarwal2003framework} is a framework for clustering evolving data streams, which could get a clustering result during a specific time. However, none of these works have taken the special properties of ECG data into account, thus they can not be applied in the cardiac telehealth systems. 
+%The challenge derived from telehealth: Stream clustering & current works & drawbacks
+As mentioned before, to provide high-quality interaction and real-time intervention for adverse cardiac events, some telehealth systems are designed to provide continuous monitoring services in a real-time manner. In these systems, the ECG data will be transmitted to remote server continuously, which makes the ECG clustering in remote server a stream clustering problem. As an important topic in data mining, plenty of literature has been proposed in stream clustering: BIRCH \cite{Zhang:1996:BED:235968.233324}, which uses the Cluster Feature as a compact representation of cluster, is regarded as one of the most primitive works in this area. M. Ester \textit{et al.} \cite{Ester:1998:ICM:645924.671201} address this problem by designing an incremental clustering algorithm based on DBSCAN algorithm. D. Pham \textit{et al.} \cite{pham2004incremental} combines the idea of ''cluster jumping'' with K-Means to cluster data incrementally. CluStream \cite{aggarwal2003framework} is a framework for clustering evolving data streams, which could get a clustering result during a specific time. However, none of these works have taken the special properties of ECG data into account, thus they can not be applied in the cardiac telehealth scenario. 
 
 
-%Massive data: why & current work
+%The challenge derived from telehealth: Massive data & current work
 In addition, the large number of user and the high data update rate in telehealth systems converge to the fact that the data volume in the system will be extremely large, therefore a framework is required to manage such massive data. Although there are many candidates, the MapReduce framework  proposed by J. Dean \textit{et al.} \cite{dean2008mapreduce} has attracted great attention from both academia and the industry in recent years and its open-source implementation, namely Hadoop \cite{white2010hadoop}, becomes the first choice for managing big data. Although MapReduce has lots of excellent advantages, it is not easy work to design a system based on the MapReduce framework. In order to better utilize the power of MapReduce, the designer has to design the workflow carefully according to the MapReduce programming model to distribute as much computation work as possible.
 
 
 %our contribution
-In this work, we designed a parallel system for clustering massive ECG stream data and implemented it on top of MapReduce. Our system performs the clustering by adopting an ECG-oriented metric and tries to achieves the global optimum by merging and splitting dynamically. The evaluation on a Hadoop cluster with 8 nodes shows that our system can not only provide a good clustering result but also has an excellent performance on multiple nodes.
+In this work, we designed a parallel system for clustering massive ECG stream data and implemented it on top of MapReduce. Our system performs the clustering by adopting an ECG-oriented metric and tries to achieves the global optimum by merging and splitting dynamically. The evaluation on a Hadoop cluster with 32 computing cores shows that our system can not only provide a good clustering result but also has an excellent performance on multiple nodes.
 
 
 %Arrangement of paper
@@ -545,13 +545,13 @@ The rest of this paper is organized as follows: In Section II, we present an ove
 % command of the stfloats package.
 
 \section{System overview and challenges}
-Under the scenario of our work, portable sensors are deployed to collect ECG data from users and upload the data to our system automatically and continuously by using wireless network technologies. The ECG data then arrives in our system as a stream with a high update rate. As soon as the data arrives in our system, a stream clustering algorithm is performed immediately to cluster the newly arrived data properly with respect to the existing data. The clustering result can be provided to clinicians to help in diagnosis or delivered to another system for further analysis. To achieve this, several challenges need to be conquered.
+Under the scenario of our work, portable sensors are deployed to collect ECG data from users and transmit the data to our system automatically and continuously by using wireless network technologies. The ECG data then arrives in our system as a stream data. As soon as the data arrives in our system, a stream clustering algorithm is performed immediately to cluster the newly arrived data properly with respect to the existing data. The clustering result can be provided to clinicians to help in diagnosis or delivered to another system for further analysis. To achieve this, several challenges need to be conquered.
 
 
 \textbf{ECG-oriented metric design:}
 
 
-The primary step of cluster analysis is to define the basic processing unit. For ECG data, as it is actually a combination of electrical deflection caused by the heartbeat, it can be divided into several intervals according to the heart rate, each of which is called as PT interval in this paper and used as the basic processing unit for our cluster analysis. Figure \ref{fig_ECG_lable} presents a standard PT interval. As showed in Figure \ref{fig_ECG_lable}, the PT interval actually consists of P wave, QRS complex, T wave and segments between them. Each wave has some feature points----the beginning point, the peak and the end point. The PT interval also has some special properties: Firstly, considering the nature of ECG, some regions of the PT interval are more important than others. Second, since each PT interval corresponds to a heart beat, the PT intervals could be of various lengths. Finally, as a result of the biological diversity, the morphological characteristic of PT intervals diversifies with different people and even with same person in different situations.
+The primary step of cluster analysis is to define the basic processing unit. For ECG data, as it is actually a combination of electrical deflection caused by the heartbeat, it can be divided into several intervals according to the heart rate, each of which is called as QRS interval in this paper and used as the basic processing unit for our cluster analysis. Figure \ref{fig_ECG_lable} presents a standard QRS interval. As showed in Figure \ref{fig_ECG_lable}, the QRS interval actually consists of P wave, QRS complex, T wave and segments between them. Each wave has some feature points----the beginning point, the peak and the end point. The QRS interval also has some special properties: Firstly, considering the nature of ECG, some regions of the QRS interval are more important than others. Second, since each QRS interval corresponds to a heart beat, the QRS intervals could be of various lengths. Finally, as a result of the biological diversity, the morphological characteristic of QRS intervals diversifies with different people and even with same person in different situations.
 \begin{figure}[!t]
 \centering
 \includegraphics[height=3.0in]{./Figure/rr_interval_label.eps}
@@ -560,7 +560,7 @@ The primary step of cluster analysis is to define the basic processing unit. For
 \end{figure}
 
 
-Considering these properties, we propose an ECG-oriented metric, which defines how to measure the dissimilarity between two unequal-lengthed PT intervals.
+Considering these properties, we propose an ECG-oriented metric, which defines how to measure the dissimilarity between two unequal-lengthed QRS intervals.
 
 
 \textbf{Stream clustering algorithm:}
@@ -583,19 +583,19 @@ To improve the performance as much as possible, we carefully design our workflow
 
 
 \section{ECG-Oriented Metric}
-As mentioned in section II, the primary step of cluster analysis is to define the basic processing unit. In our system, the PT interval is used as the basic unit of clustering. So, as soon as a batch of ECG data arrives, a conventional wavelet transformation based algorithm is applied to find the feature points. According to these feature points, the ECG data could easily be interpreted into PT intervals.
+As mentioned in section II, the primary step of cluster analysis is to define the basic processing unit. In our system, the QRS interval is used as the basic unit of clustering. So, as soon as a batch of ECG data arrives, a conventional wavelet transformation based algorithm is applied to find the feature points. According to these feature points, the ECG data could easily be interpreted into QRS intervals.
 
-After that, we define how to measure the dissimilarity between these basic processing units. Considering the special properties of PT intervals, this is not easy work.
+After that, we define how to measure the dissimilarity between these basic processing units. Considering the special properties of QRS intervals, this is not easy work.
 
 
-The primary challenge deriving from the special properties of PT interval is that they are time series data of unequal length. This makes some conventional metrics like Euclidean metrics inapplicable since they could only handle data of equal length. So, to measure the dissimilarity between PT intervals properly, we first align these PT intervals by adopting the Dynamic Time Warping (DTW) algorithm \cite{sakoe1978dynamic}: Given two sequences of time series data $ M $ and $ N $, with length $ m $ and $ n $ respectively, the DTW algorithm would yield an optimal warping path between the two data by using the dynamic programming approach. The warping path $  WP $ is a set of tuples which is defined below:
+The primary challenge deriving from the special properties of QRS interval is that they are time series data of unequal length. This makes some conventional metrics like Euclidean metrics inapplicable since they could only handle data of equal length. So, to measure the dissimilarity between QRS intervals properly, we first align these QRS intervals by adopting the Dynamic Time Warping (DTW) algorithm \cite{sakoe1978dynamic}: Given two sequences of time series data $ M $ and $ N $, with length $ m $ and $ n $ respectively, the DTW algorithm would yield an optimal warping path between the two data by using the dynamic programming approach. The warping path $  WP $ is a set of tuples which is defined below:
 \begin{equation}
 WP = \{ (i, j) \; | \; 0 \leq i \leq m, \; 0 \leq j \leq n  \}
 \end{equation}
 where each tuple $ (i, j) $ in the warping path implies that the $ i^{th} $ element in the data $ M $ should be aligned with the $ j^{th} $ element in the data $ N $. So, with this warping path, these two time series data $ M $ and $ N $ could be aligned easily.
 
 
-Another issue raised from the special properties of PT interval is that considering the nature of ECG, some regions of the PT interval are more important than others. Taking this into account, we divide the PT interval into three segments and assign each segment with a heuristic weight, that is:
+Another issue raised from the special properties of QRS interval is that considering the nature of ECG, some regions of the QRS interval are more important than others. Taking this into account, we divide the QRS interval into three segments and assign each segment with a heuristic weight, that is:
 \begin{equation}\label{PT_segment}
 \left\{ \begin{array}{ll}
 s_1 = [P_o, Q_o], \; w_1 = 0.15\\
@@ -606,10 +606,10 @@ s_3 = [J, T_e], \; w_3 = 0.35
 where the $ P_o $ is the beginning point of P wave, $ Q_o $ is the beginning point of Q wave, $ J $ is the end point of S wave, the $ T_e $ is the end point of T wave, and the $ w_1 $, $ w_2 $ and $ w_3 $ is the heuristic weight of each segment respectively. All of these points are shown in Figure \ref{fig_ECG_lable}.
 
 
-Combining these two ideas, we get the procedure of measuring the dissimilarity between PT intervals: Firstly, a standard PT interval would be synthesized, and all of the PT intervals, including the synthesized one, would be divided into three segments: $ s_1, s_2, s_3 $ according to the equation (\ref{PT_segment}). Then, the DTW algorithm is applied between each PT interval and the standard PT interval on $ s1 $, $ s2 $ and $ s3 $ respectively to find the warping paths. By aligning the $ s_1 $, $ s_2 $ and $ s_3 $ respectively, all the PT intervals would be aligned with the standard PT interval. After that, the dissimilarity between two PT intervals can be defined as the sum of the weighted Euclidean distance of the aligned segment. 
+Combining these two ideas, we get the procedure of measuring the dissimilarity between QRS intervals: Firstly, a standard QRS interval would be synthesized, and all of the QRS intervals, including the synthesized one, would be divided into three segments: $ s_1, s_2, s_3 $ according to the equation (\ref{PT_segment}). Then, the DTW algorithm is applied between each QRS interval and the standard QRS interval on $ s1 $, $ s2 $ and $ s3 $ respectively to find the warping paths. By aligning the $ s_1 $, $ s_2 $ and $ s_3 $ respectively, all the QRS intervals would be aligned with the standard QRS interval. After that, the dissimilarity between two QRS intervals can be defined as the sum of the weighted Euclidean distance of the aligned segment. 
 
 
-That is, given two PT intervals $ Q $ and $ R $, which have been aligned with the standard PT interval, the dissimilarity $ Dis(Q, R) $ between these two PT intervals is defined as:
+That is, given two QRS intervals $ Q $ and $ R $, which have been aligned with the standard QRS interval, the dissimilarity $ Dis(Q, R) $ between these two QRS intervals is defined as:
 \begin{equation}\label{eq_dissimilarity}
 Dis(Q, R) = \sum_{i=1,2,3}{w_i * dis(s_{iq}, s_{ir} )}
 \end{equation}
@@ -634,11 +634,11 @@ where $ s_{iq} $ and $ s_{ir} $ are the aligned segments $ i $ in $ Q $ and $ R 
 The design preference of providing continuous monitoring services in the ECG telehealth system has made the data arrive in the system as a stream with high update rate. This nature of this stream requires the clustering algorithm not only to be able to generate results in a limited time but also be aware of the undergoing changes. Under these concerns, we present our stream clustering algorithm, which could generate results in an incremental manner by dynamically merging and splitting clusters. Figure \ref{fig_algorithm_overview} gives an overview of the whole clustering algorithm. In this approach, as a batch of ECG stream data arrives, an iteration of clustering would be triggered and the whole iteration can be divided into three steps: local clustering, global merging and global splitting.
 
 
-Step 1 is called local clustering. In this step, the ECG data has already been interpreted into PT intervals, and these PT intervals would be divided into several groups randomly and uniformly. Then, for each group, a K-Means algorithm is applied to generate $ k $ clusters respectively, where the parameter $ k $ is used to control the granularity of local clustering. After the clustering, the cluster features of each cluster would be computed, the cluster feature $ CF $ is actually the representation of a cluster, which is defined as below:
+Step 1 is called local clustering. In this step, the ECG data has already been interpreted into QRS intervals, and these QRS intervals would be divided into several groups randomly and uniformly. Then, for each group, a K-Means algorithm is applied to generate $ k $ clusters respectively, where the parameter $ k $ is used to control the granularity of local clustering. After the clustering, the cluster features of each cluster would be computed, the cluster feature $ CF $ is actually the representation of a cluster, which is defined as below:
 \begin{equation}
 CF(C) = (c, \; e, \; r, \; lr)
 \end{equation} 
-where the $ c $ is the centre of cluster $ C $, $ e $ is the centre of the Euclidean space, $ r $ is the average distance between centre $ c $ and the PT intervals in this cluster, and the $ lr $ is the maximal distance between centre $ c $ and the PT intervals in the cluster. 
+where the $ c $ is the centre of cluster $ C $, $ e $ is the centre of the Euclidean space, $ r $ is the average distance between centre $ c $ and the QRS intervals in this cluster, and the $ lr $ is the maximal distance between centre $ c $ and the QRS intervals in the cluster. 
 
 %They are defined mathematically as bellow:
 %\begin{equation}\label{eq_CF_defination}
@@ -651,7 +651,7 @@ where the $ c $ is the centre of cluster $ C $, $ e $ is the centre of the Eucli
 %\end{equation}
 %where $ n $ is the number of points in cluster $ C $
 
-Some PT intervals that should belong to the same cluster,  might be divided into different groups and thus be clustered separately which eventually leads to their misplacement. A global merging and splitting is performed after the local clustering to address this problem. 
+Some QRS intervals that should belong to the same cluster,  might be divided into different groups and thus be clustered separately which eventually leads to their misplacement. A global merging and splitting is performed after the local clustering to address this problem. 
 
 
 Step 2 is the global merging. In this phase, we first define the connectivity $ con $ between two clusters $ Q $ and $ T $ as below:
@@ -700,7 +700,7 @@ In the global merging, we actually have two MapReduce jobs: one for global mergi
 For the global splitting, as it only concerns a part of the whole data and is thus independent of the others, this step could be distributed easily. As mentioned before, an inevitable cluster evaluation job would be performed after the global splitting.
 
 \section{Evaluation}
-We implemented our system on top of Hadoop 0.20.2. As described in the previous section, this system consists of multiple MapReduce jobs, and all the jobs are implemented in Java. To prepare the data for evaluation, we cooperate with New Element Medical Ltd.,Co, Shenzhen, China, which provides us a real ECG database collected from hundreds of users, including users of different age, gender and heart status. In the database, there are more than 1,500 ECG data files, each of which contains about 2,800 PT intervals. So, approximately, there are 4,356,800 PT intervals in total. With these data, we conduct our evaluation on a homogeneous Hadoop cluster, in which each node runs a CentOS release 5.5 and is equipped with an Intel Xeon CPU X3430 @ 2.4 GHz with 4 cores, 4 GB of RAM and 160 GB of hard disk. For all the experiments, we set the parameters in our system as below:
+We implemented our system on top of Hadoop 0.20.2. As described in the previous section, this system consists of multiple MapReduce jobs, and all the jobs are implemented in Java. To prepare the data for evaluation, we cooperate with New Element Medical Ltd.,Co, Shenzhen, China, which provides us a real ECG database collected from hundreds of users, including users of different age, gender and heart status. In the database, there are more than 1,500 ECG data files, each of which contains about 2,800 QRS intervals. So, approximately, there are 4,356,800 QRS intervals in total. With these data, we conduct our evaluation on a homogeneous Hadoop cluster, in which each node runs a CentOS release 5.5 and is equipped with an Intel Xeon CPU X3430 @ 2.4 GHz with 4 cores, 4 GB of RAM and 160 GB of hard disk. For all the experiments, we set the parameters in our system as below:
 \begin{equation}
 \{ k=4, \; \lambda=1.0, \; \tau=0.4 \;  \}
 \end{equation}
@@ -712,7 +712,7 @@ For the evaluation, we first conduct a baseline performance evaluation, in which
 \textbf{Baseline performance evaluation:}
 
 
-In this evaluation, we use our system to cluster an ECG stream consisted of all the ECG data files from the real ECG database. The whole data is clustered into 4 clusters and some important statistics of each cluster are listed in table \ref{tb_clustering_result}, where the cluster size is the number of PT intervals in the cluster, the total distance is the sum of distances between the cluster centre and the PT intervals in the cluster, the average radius is the average distance between the cluster centre and the PT intervals in the cluster, and the maximal radius is the maximal distance between the cluster centre and the PT intervals in this cluster. To provide an intuitive view of the clustering results, Figure \ref{fig_clustering_result} plots all the PT intervals belong to the last cluster in the clustering result by overlapping them in a single figure.
+In this evaluation, we use our system to cluster an ECG stream consisted of all the ECG data files from the real ECG database. The whole data is clustered into 4 clusters and some important statistics of each cluster are listed in table \ref{tb_clustering_result}, where the cluster size is the number of QRS intervals in the cluster, the total distance is the sum of distances between the cluster centre and the QRS intervals in the cluster, the average radius is the average distance between the cluster centre and the QRS intervals in the cluster, and the maximal radius is the maximal distance between the cluster centre and the QRS intervals in this cluster. To provide an intuitive view of the clustering results, Figure \ref{fig_clustering_result} plots all the QRS intervals belong to the last cluster in the clustering result by overlapping them in a single figure.
 \begin{table}[!t]\caption{Clustering Result}
 \label{tb_clustering_result}
 \centering
@@ -745,14 +745,14 @@ The average running of each step of our stream clustering algorithm is also eval
 
 \begin{figure}[!t]
 \centering
-\includegraphics[height=2.0in]{./Figure/runningTime_cores.eps}
+\includegraphics[height=1.6in]{./Figure/runningTime_cores.eps}
 \caption{Scalability of PESC system.}
 \label{fig_scalability_total_cores}
 \end{figure}
 
 \begin{figure}[!t]
 \centering
-\includegraphics[height=1.8in]{./Figure/phase_cores.eps}
+\includegraphics[height=1.55in]{./Figure/phase_cores.eps}
 \caption{Scalability of steps in stream clustering algorithm.}
 \label{fig_scalability_phase_cores}
 \end{figure}
@@ -763,7 +763,7 @@ The average running of each step of our stream clustering algorithm is also eval
 As mentioned at the beginning of this section, the database we are using consists of thousands of small files. However, processing large volumes of small files in Hadoop could be quite frustrating. One of the most significant reasons is that for each file in the HDFS which is smaller than a block would still occupy a block. That is, as the default block size of HDFS is 64 MB, if there are 10,000 files in HDFS, each of which is smaller than 64 MB, then these files will occupy $ 10,000 * 64 MB = 625 GB $ in the HDFS, which would degrade the performance significantly. To evaluate the influence of block size to our system performance, we run our system with different block size and the result is shown in Figure \ref{fig_block_size}. It is found that when the block size of HDFS is significantly larger than the size of the files stored in it, the total running time is quite high since there are lots of useless IO and network overheads. However, due to the fact that each map task usually processes a block of input at a time, if the block size are noticeable smaller than the input files size, then there will be plenty of map tasks, each of which imposes extra bookkeeping overhead, which eventually degrades the performance.
 \begin{figure}[!t]
 \centering
-\includegraphics[height=2.0in]{./Figure/block_size.eps}
+\includegraphics[height=1.6in]{./Figure/block_size.eps}
 \caption{PESC performance V.S. HDFS block size.}
 \label{fig_block_size}
 \end{figure}
